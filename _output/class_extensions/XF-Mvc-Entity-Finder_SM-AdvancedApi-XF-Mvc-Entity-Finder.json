@@ -1,6 +1,0 @@
-{
-    "from_class": "XF\\Mvc\\Entity\\Finder",
-    "to_class": "SM\\AdvancedApi\\XF\\Mvc\\Entity\\Finder",
-    "execute_order": 9,
-    "active": true
-}

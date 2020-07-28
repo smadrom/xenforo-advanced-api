@@ -8,6 +8,7 @@
     filter=column_name=value
     search=value
     orderby=column,direction
+    limit=1
 
 **Example:** 
 
@@ -15,4 +16,5 @@
     ...api/users/?filter=username~min
     ...api/threads/?search=best
     ...api/threads/?orderby=user_id,desc
+    ...api/threads/?limit=1&offset=1
 

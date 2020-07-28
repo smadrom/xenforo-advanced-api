@@ -5,10 +5,6 @@
 
 namespace SM\AdvancedApi\XF\Finder
 {
+	class XFCP_Thread extends \XF\Finder\Thread {}
 	class XFCP_User extends \XF\Finder\User {}
-}
-
-namespace SM\AdvancedApi\XF\Mvc\Entity
-{
-	class XFCP_Finder extends \XF\Mvc\Entity\Finder {}
 }

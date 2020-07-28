@@ -2,13 +2,15 @@
     "legacy_addon_id": "",
     "title": "SM - Advanced Api",
     "description": "",
-    "version_id": 1000010,
-    "version_string": "1.0.0 Alpha",
-    "dev": "",
-    "dev_url": "",
-    "faq_url": "",
-    "support_url": "",
+    "version_id": 1000020,
+    "version_string": "1.0.2 Alpha",
+    "dev": "smadrome",
+    "dev_url": "https://github.com/smadrom/xenforo-advanced-api",
+    "faq_url": "https://github.com/smadrom/xenforo-advanced-api",
+    "support_url": "https://github.com/smadrom/xenforo-advanced-api",
     "extra_urls": [],
-    "require": [],
+    "require": {
+        "php": ["7.0.0", "PHP 7.0.0+"]
+    },
     "icon": ""
 }

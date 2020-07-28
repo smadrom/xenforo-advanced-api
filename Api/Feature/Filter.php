@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace SM\AdvancedApi\Api\Feature;
 
 use XF\Mvc\Entity\Finder;
-use function array_key_exists;
 use function count;
 
 /**

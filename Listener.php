@@ -5,7 +5,10 @@ namespace SM\AdvancedApi;
 
 use SM\AdvancedApi\Api\AdvancedApi;
 use XF\Api\App;
+use XF\Finder\Thread;
+use XF\Finder\User;
 use XF\Mvc\Entity\Finder;
+
 
 /**
  * Class Listener
@@ -13,7 +16,11 @@ use XF\Mvc\Entity\Finder;
  */
 class Listener
 {
-    public static function apiFinderPreFetch(Finder $finder): Finder
+    /**
+     * @param Finder $finder
+     * @return User|Thread
+     */
+    public static function apiFinderPreFetch(Finder $finder)
     {
         $request = $finder->app()->request();
 
@@ -22,20 +29,5 @@ class Listener
         }
 
         return $finder;
-    }
-
-    /**
-     * @param App $app
-     * @return App
-     */
-    public static function apiLimitFeature(App $app): App
-    {
-        $limit = $app->request()->filter('limit', 'uint');
-
-        if ($limit > 0) {
-            $app->options()->offsetSet('discussionsPerPage', $limit);
-        }
-
-        return $app;
     }
 }

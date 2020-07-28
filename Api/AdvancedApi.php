@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace SM\AdvancedApi\Api;
 
 use XF\Mvc\Entity\Finder;
-
+use function array_key_exists;
 /**
  * Class AdvancedApi
  * @package SM\AdvancedApi\Api
@@ -15,6 +15,8 @@ class AdvancedApi
         'filter' => '?str',
         'search' => '?str',
         'orderby' => '?str',
+        'limit' => 'uint',
+        'offset' => 'uint',
     ];
 
     /**
@@ -25,7 +27,7 @@ class AdvancedApi
     public static function run(Finder $finder, array $inputs)
     {
         foreach ($inputs as $feature => $input) {
-            if ($input !== null) {
+            if ($input !== null && array_key_exists($feature, self::FILTER)) {
                 //hack: order
                 if ($feature === 'orderby') {
                     $feature = 'order';
