@@ -3,11 +3,12 @@ declare(strict_types=1);
 
 namespace SM\AdvancedApi\Api;
 
-use SM\AdvancedApi\Api\Exception\NotFound;
 use SM\AdvancedApi\Api\Response\Response;
 use XF\Api\Controller\AbstractController;
 use XF\Api\Mvc\Reply\ApiResult;
+use XF\Mvc\Entity\Finder;
 use XF\Mvc\ParameterBag;
+use XF\Mvc\Reply\Exception;
 
 /**
  * Class Endpoint
@@ -15,35 +16,44 @@ use XF\Mvc\ParameterBag;
  */
 class Endpoint extends AbstractController
 {
+    private $id;
     private $entity;
+    private $entityClass;
     private $filter;
+    /** @var Finder */
     private $finder;
 
     /**
      * @param $action
      * @param ParameterBag $params
+     * @throws Exception
      */
     protected function preDispatchController($action, ParameterBag $params)
     {
+        $this->assertApiScopeByRequestMethod('entity:read');
+
+        $this->id = $params->get('id');
         $this->entity = $params->get('entity');
-        $this->filter = $this->app->request()->filter(AdvancedApi::FILTER);
+        $this->entityClass = ucfirst($this->entity);
 
-        $entityClass = ucfirst($this->entity);
+        $this->setupFinder();
 
-        if (!class_exists('XF\\Entity\\' . $entityClass)) {
-            throw new NotFound('Entity ' . $entityClass . ' not found');
+        if ($this->id === null) {
+            $this->setupFilter();
+            $this->setupFeatures();
         }
-
-        $this->finder = $this->em()->getFinder('XF:' . $entityClass, false);
-
-        $this->setupFeatures();
     }
 
     /**
      * @return ApiResult
+     * @throws Exception
      */
     public function actionGet(): ApiResult
     {
+        if ($this->id !== null) {
+            return $this->actionGetOne();
+        }
+
         $rows = $this->finder->fetch()->toArray();
 
         $result = Response::init('rows')
@@ -56,6 +66,46 @@ class Endpoint extends AbstractController
             ->build();
 
         return $this->apiResult($result);
+    }
+
+    /**
+     * @return ApiResult
+     * @throws Exception
+     */
+    public function actionGetOne(): ApiResult
+    {
+        $entityStructure = $this->app->em()->getEntityStructure('XF:' . $this->entityClass);
+
+        $row = $this->finder->where($entityStructure->primaryKey, '=', $this->id)->fetchOne();
+
+        if ($row === null) {
+            throw $this->exception(
+                $this->error('Not found', 404)
+            );
+        }
+
+        $result = Response::init('row')->row($row->toArray())->build();
+
+        return $this->apiResult($result);
+    }
+
+    private function setupFilter()
+    {
+        $this->filter = $this->app->request()->filter(AdvancedApi::FILTER);
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function setupFinder()
+    {
+        if (!class_exists('XF\\Entity\\' . $this->entityClass)) {
+            throw $this->exception(
+                $this->error('Entity ' . $this->entityClass . ' not found', 404)
+            );
+        }
+
+        $this->finder = $this->em()->getFinder('XF:' . $this->entityClass, false);
     }
 
     private function setupFeatures()

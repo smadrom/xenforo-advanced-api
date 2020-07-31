@@ -13,7 +13,7 @@ class Response
 {
     /**
      * @param string $name
-     * @return Error|Row
+     * @return Error|Row|Rows
      */
     public static function init(string $name)
     {
