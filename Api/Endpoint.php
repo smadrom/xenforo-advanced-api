@@ -30,7 +30,7 @@ class Endpoint extends AbstractController
      */
     protected function preDispatchController($action, ParameterBag $params)
     {
-        $this->assertApiScopeByRequestMethod('entity:read');
+        $this->assertApiScopeByRequestMethod('entity');
 
         $this->id = $params->get('id');
         $this->entity = $params->get('entity');
