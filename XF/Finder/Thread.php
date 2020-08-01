@@ -20,7 +20,7 @@ class Thread extends XFCP_Thread
      */
     public function fetch($limit = null, $offset = null)
     {
-        XF::fire('finder_pre_fetch', [$this], XF::extension()->resolveExtendedClassToRoot($this));
+        XF::fire('finder_pre_fetch', [$this]);
 
         return parent::fetch($limit, $offset);
     }

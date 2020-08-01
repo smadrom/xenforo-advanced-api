@@ -18,7 +18,6 @@ class Endpoint extends AbstractController
 {
     private $id;
     private $entity;
-    private $entityClass;
     private $filter;
     /** @var Finder */
     private $finder;
@@ -34,7 +33,6 @@ class Endpoint extends AbstractController
 
         $this->id = $params->get('id');
         $this->entity = $params->get('entity');
-        $this->entityClass = ucfirst($this->entity);
 
         $this->setupFinder();
 
@@ -91,7 +89,11 @@ class Endpoint extends AbstractController
 
     private function setupFilter()
     {
-        $this->filter = $this->app->request()->filter(AdvancedApi::FILTER);
+        $filter = $this->app->request()->filter(AdvancedApi::FILTER);
+
+        $filter['limit'] = $filter['limit'] === 0 ? 100 : $filter['limit'];
+
+        $this->filter = $filter;
     }
 
     /**
@@ -99,13 +101,13 @@ class Endpoint extends AbstractController
      */
     private function setupFinder()
     {
-        if (!class_exists('XF\\Entity\\' . $this->entityClass)) {
+        if (!class_exists('XF\\Entity\\' . $this->entity)) {
             throw $this->exception(
-                $this->error('Entity ' . $this->entityClass . ' not found', 404)
+                $this->error('Entity ' . $this->entity . ' not found', 404)
             );
         }
 
-        $this->finder = $this->em()->getFinder('XF:' . $this->entityClass, false);
+        $this->finder = $this->em()->getFinder('XF:' . $this->entity, false);
     }
 
     private function setupFeatures()

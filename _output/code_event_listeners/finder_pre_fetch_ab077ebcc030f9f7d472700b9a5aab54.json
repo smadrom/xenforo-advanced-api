@@ -3,7 +3,7 @@
     "execute_order": 10,
     "callback_class": "SM\\AdvancedApi\\Listener",
     "callback_method": "apiFinderPreFetch",
-    "active": true,
-    "hint": "",
+    "active": false,
+    "hint": "XF\\Api\\ControllerPlugin\\User",
     "description": "Finder pre fetch: Users"
 }

@@ -17,6 +17,7 @@ class AdvancedApi
         'orderby' => '?str',
         'limit' => 'uint',
         'offset' => 'uint',
+        'with' => '?str',
     ];
 
     /**

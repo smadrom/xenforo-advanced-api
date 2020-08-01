@@ -3,7 +3,7 @@
     "execute_order": 10,
     "callback_class": "SM\\AdvancedApi\\Listener",
     "callback_method": "apiFinderPreFetch",
-    "active": true,
+    "active": false,
     "hint": "XF\\Api\\Controller\\Threads",
     "description": "Finder pre fetch: Threads"
 }
