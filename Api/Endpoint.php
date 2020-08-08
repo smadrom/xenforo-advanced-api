@@ -35,6 +35,7 @@ class Endpoint extends AbstractController
      */
     public function actionGet(): ApiResult
     {
+
         if ($this->entity === null) {
             return $this->getEntityList();
         }
@@ -94,12 +95,12 @@ class Endpoint extends AbstractController
 
         $this->scanEntityFolder();
 
-        $this->setupFinder();
-
-        $this->getStructure();
-
-        $this->setupFilter();
-        $this->setupFeatures();
+        if ($this->entity !== null) {
+            $this->setupFinder();
+            $this->getStructure();
+            $this->setupFilter();
+            $this->setupFeatures();
+        }
     }
 
     private function getRows(): ApiResult

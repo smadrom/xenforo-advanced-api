@@ -4,53 +4,5 @@
         "version_id": 1000010,
         "version_string": "1.0.0 Alpha",
         "hash": "12b73bce42fdf6e8e3bb47d87ef4eb71"
-    },
-    "option.pwupBeforeWords.txt": {
-        "global_cache": false,
-        "version_id": 1000010,
-        "version_string": "1.0.0 Alpha",
-        "hash": "41843c1939bf20f2f200ef4cc9ca8ff1"
-    },
-    "option.pwupDisallowedEmailDomains.txt": {
-        "global_cache": false,
-        "version_id": 1000010,
-        "version_string": "1.0.0 Alpha",
-        "hash": "4a55f68f849d656022cf42e87e8ed3ab"
-    },
-    "option.pwupRegexList.txt": {
-        "global_cache": false,
-        "version_id": 1000010,
-        "version_string": "1.0.0 Alpha",
-        "hash": "5da2fb51de306ad86e4bf6e94a134e7b"
-    },
-    "option_explain.pwupBeforeWords.txt": {
-        "global_cache": false,
-        "version_id": 1000010,
-        "version_string": "1.0.0 Alpha",
-        "hash": "d41d8cd98f00b204e9800998ecf8427e"
-    },
-    "option_explain.pwupDisallowedEmailDomains.txt": {
-        "global_cache": false,
-        "version_id": 1000010,
-        "version_string": "1.0.0 Alpha",
-        "hash": "d41d8cd98f00b204e9800998ecf8427e"
-    },
-    "option_explain.pwupRegexList.txt": {
-        "global_cache": false,
-        "version_id": 1000010,
-        "version_string": "1.0.0 Alpha",
-        "hash": "d41d8cd98f00b204e9800998ecf8427e"
-    },
-    "option_group.pwupEmailFilter.txt": {
-        "global_cache": false,
-        "version_id": 1000010,
-        "version_string": "1.0.0 Alpha",
-        "hash": "97f52b12fba1d2199e9b734ebcc52d20"
-    },
-    "option_group_description.pwupEmailFilter.txt": {
-        "global_cache": false,
-        "version_id": 1000010,
-        "version_string": "1.0.0 Alpha",
-        "hash": "d41d8cd98f00b204e9800998ecf8427e"
     }
 }
