@@ -1,9 +1,0 @@
-{
-    "event_id": "finder_pre_fetch",
-    "execute_order": 10,
-    "callback_class": "SM\\AdvancedApi\\Listener",
-    "callback_method": "apiFinderPreFetch",
-    "active": false,
-    "hint": "XF\\Api\\ControllerPlugin\\User",
-    "description": "Finder pre fetch: Users"
-}

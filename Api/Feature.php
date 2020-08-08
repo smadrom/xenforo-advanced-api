@@ -9,7 +9,7 @@ use function array_key_exists;
  * Class AdvancedApi
  * @package SM\AdvancedApi\Api
  */
-class AdvancedApi
+class Feature
 {
     const FILTER = [
         'filter' => '?str',

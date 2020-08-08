@@ -18,9 +18,6 @@ class Row
         return $this;
     }
 
-    /**
-     * @return array
-     */
     public function build(): array
     {
         return (array)$this->response;

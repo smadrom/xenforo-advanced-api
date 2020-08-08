@@ -25,14 +25,11 @@ class Error
         return $this;
     }
 
-    public function show()
+    public function show(): void
     {
         echo json_encode($this->response);
     }
 
-    /**
-     * @return array
-     */
     public function build(): array
     {
         return (array)$this->response;

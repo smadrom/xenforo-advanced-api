@@ -53,9 +53,6 @@ class Rows
         return $this;
     }
 
-    /**
-     * @return array
-     */
     public function build(): array
     {
         return (array)$this->response;

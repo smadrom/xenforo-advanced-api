@@ -1,6 +1,0 @@
-{
-    "from_class": "XF\\Finder\\User",
-    "to_class": "SM\\AdvancedApi\\XF\\Finder\\User",
-    "execute_order": 10,
-    "active": false
-}
