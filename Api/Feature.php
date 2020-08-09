@@ -11,7 +11,7 @@ use function array_key_exists;
  */
 class Feature
 {
-    const FILTER = [
+    public const FILTER = [
         'filter' => '?str',
         'search' => '?str',
         'orderby' => '?str',
@@ -29,11 +29,6 @@ class Feature
     {
         foreach ($inputs as $feature => $input) {
             if ($input !== null && array_key_exists($feature, self::FILTER)) {
-                //hack: order
-                if ($feature === 'orderby') {
-                    $feature = 'order';
-                }
-                //hack: order
                 $featureClass = 'SM\\AdvancedApi\\Api\\Feature\\' . ucfirst($feature);
                 if (class_exists($featureClass)) {
                     $finder = $featureClass::run($finder, $inputs);

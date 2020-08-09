@@ -67,7 +67,7 @@ class Endpoint extends AbstractController
         }
 
         $result = Response::init('structure')
-            ->columns($relations)
+            ->relations($relations)
             ->build();
 
         return $this->apiResult($result);
@@ -198,9 +198,9 @@ class Endpoint extends AbstractController
      */
     private function setupFinder(): void
     {
-        $shortName = $this->findShortNameEntity();
+        $shortName = $this->findShortName();
 
-        if (!$shortName) {
+        if ($shortName === null) {
             throw $this->exception(
                 $this->error('Entity ' . $this->entity . ' not found', 404)
             );
@@ -209,7 +209,7 @@ class Endpoint extends AbstractController
         $this->finder = $this->em()->getFinder($shortName);
     }
 
-    private function findShortNameEntity(): ?string
+    private function findShortName(): ?string
     {
         if (array_key_exists($this->entity, $this->entityList)) {
             return $this->entityList[$this->entity]['shortName'];
