@@ -13,6 +13,7 @@ use XF\Mvc\Entity\Finder;
 use XF\Mvc\Entity\Structure;
 use XF\Mvc\ParameterBag;
 use XF\Mvc\Reply\Exception;
+use XF\Util\Ip;
 use function array_key_exists;
 
 /**
@@ -220,6 +221,13 @@ class Endpoint extends AbstractController
     private function formatRow(Entity $row): array
     {
         $result = $row->toArray();
+
+        foreach ($result as $columnName => $value) {
+            if ($columnName === 'ip') {
+                $result[$columnName] = Ip::convertIpBinaryToString($value);
+                break;
+            }
+        }
 
         $relations = With::$relations;
 
